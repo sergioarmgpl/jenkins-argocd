@@ -7,8 +7,7 @@ push_base:
 	docker build . -t ${DOCKER_REPO}/${IMG_NAME}:${APP_VERSION}-${BUILD_NUMBER}
 	docker push ${DOCKER_REPO}/${IMG_NAME}:${APP_VERSION}-${BUILD_NUMBER}
 clean:
-	docker stop api || echo "done" 
-	docker rm api || docker rmi ${AZ_REGISTRY}/${IMG_NAME}:${APP_VERSION}-${BUILD_NUMBER} || echo "everything clean"
+	docker rmi ${AZ_REGISTRY}/${IMG_NAME}:${APP_VERSION}-${BUILD_NUMBER} || echo "everything clean"
 deploy:
 	curl -sSL -k -o argocd https://${ARGOCD_SERVER}/download/argocd-linux-amd64
 	chmod 755 argocd
@@ -19,3 +18,4 @@ deploy:
 	echo "deployed done"
 deploy_helm:
 	echo "deploy with helm"
+	helm upgrade ${IMG_NAME} . --set dockerImage=${AZ_REGISTRY}/${IMG_NAME}:${APP_VERSION}-${BUILD_NUMBER} -n ${NAMESPACE}

@@ -29,14 +29,9 @@ pipeline {
         stage('Deploy with Argo') {
             steps {
                 script {
-                    withCredentials([
-                    string(credentialsId: 'argo_token', variable: 'ARGO_TOKEN'),
-                    file(credentialsId: 'gcr-private-repo-reader', variable: 'GCR_KEY')
-                    ]) {
-                        dir('src'){
-                            sh "make deploy"
+                        dir('helm'){
+                            sh "make deploy_helm"
                         }    
-                    }
                 }                
             }
         }
