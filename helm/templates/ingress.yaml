@@ -8,7 +8,7 @@ metadata:
   namespace: {{ .Values.namespace }}
 spec:
   rules:
-    - host: app.demo.cloudsociety.xyz
+    - host: {{ .Values.domain }}
       http:
         paths:
           - backend:
