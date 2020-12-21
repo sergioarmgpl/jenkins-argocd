@@ -29,7 +29,7 @@ pipeline {
         stage('Deploy with Argo') {
             steps {
                 script {
-                        dir('helm'){
+                        dir('src'){
                             sh "make deploy_helm"
                         }    
                 }                
