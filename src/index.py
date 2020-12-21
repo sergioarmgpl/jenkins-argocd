@@ -23,5 +23,9 @@ def url_health2():
 def url_health3():
     return "Running"
 
+@app.route("/_health4")
+def url_health3():
+    return "Running"
+
 if __name__ == '__main__':
     app.run(host='0.0.0.0', port=5000, debug=True)
