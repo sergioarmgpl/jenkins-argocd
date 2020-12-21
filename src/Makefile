@@ -1,6 +1,5 @@
 push_az:
-	az login -u ${AZ_EMAIL} -P ${AZ_PASSWORD}
-	az acr login --name ${AZ_REGISTRY}
+	docker login ${AZ_REGISTRY} -u ${AZ_USER} -p ${AZ_PASSWORD}
 	docker build . -t ${DOCKER_REPO}/${IMG_NAME}:${APP_VERSION}-${BUILD_NUMBER}
 	docker push ${DOCKER_REPO}/${IMG_NAME}:${APP_VERSION}-${BUILD_NUMBER}
 push_base:

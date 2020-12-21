@@ -8,17 +8,18 @@ pipeline {
         ARGOCD_SERVER='cd.domain.tld'
         ARGO_PROJECT='testargo'
         NAMESPACE='argotest'
+        AZ_REGISTRY='bdgapp.azurecr.io'
     }
     stages {
         stage('Build & Test Dev') {
             steps {
                 script {
-                    withCredentials([
-                    file(credentialsId: 'gcr-private-repo-reader', variable: 'GCR_KEY')
+                    withCredentials([    
+                        usernamePassword(credentialsId: 'azure_credentials', usernameVariable: 'AZ_USER', passwordVariable: 'AZ_PASSWORD')
                     ]) {
                         dir('src'){
                             sh 'echo $GIT_BRANCH'
-                            sh "make push_base"
+                            sh "make push_az"
                             sh "make clean"
                         }                        
                     }
