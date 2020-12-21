@@ -18,4 +18,4 @@ deploy:
 	echo "deployed done"
 deploy_helm:
 	echo "deploy with helm"
-	helm upgrade -i ${IMG_NAME} ../helm --set ${DOMAIN} --set dockerImage=${AZ_REGISTRY}/${IMG_NAME}:${APP_VERSION}-${BUILD_NUMBER} -n ${NAMESPACE}
+	helm upgrade -i ${IMG_NAME} ../helm --set domain=${DOMAIN} --set dockerImage=${AZ_REGISTRY}/${IMG_NAME}:${APP_VERSION}-${BUILD_NUMBER} -n ${NAMESPACE}
