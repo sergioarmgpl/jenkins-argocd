@@ -5,6 +5,7 @@ metadata:
     app: app1
   name: app1
   namespace: {{ .Values.namespace }}
+  namespace: dev
 spec:
   replicas: {{ .Values.replicaCount }}
   selector:

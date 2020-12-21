@@ -7,7 +7,7 @@ pipeline {
         DOCKER_REPO = 'gcr.io/YOUR_REPO'
         ARGOCD_SERVER='cd.domain.tld'
         ARGO_PROJECT='testargo'
-        NAMESPACE='argotest'
+        NAMESPACE='dev'
         AZ_REGISTRY='bdgapp.azurecr.io'
     }
     stages {
