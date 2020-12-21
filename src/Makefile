@@ -1,3 +1,8 @@
+push_az:
+	az login -u ${AZ_EMAIL} -P ${AZ_PASSWORD}
+	az acr login --name ${AZ_REGISTRY}
+	docker build . -t ${DOCKER_REPO}/${IMG_NAME}:${APP_VERSION}-${BUILD_NUMBER}
+	docker push ${DOCKER_REPO}/${IMG_NAME}:${APP_VERSION}-${BUILD_NUMBER}
 push_base:
 	cat ${GCR_KEY} | docker login -u _json_key --password-stdin ${DOCKER_REGISTRY}
 	docker build . -t ${DOCKER_REPO}/${IMG_NAME}:${APP_VERSION}-${BUILD_NUMBER}
@@ -13,3 +18,5 @@ deploy:
 	./argocd app sync ${ARGO_PROJECT} --auth-token ${ARGO_TOKEN}
 	rm argocd
 	echo "deployed done"
+deploy_helm:
+	echo "deploy with helm"
