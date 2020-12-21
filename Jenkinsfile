@@ -13,9 +13,6 @@ pipeline {
     }
     stages {
         stage('Build & Test Dev') {
-            when {
-                branch 'feat/sergio'
-            }  
             steps {
                 script {
                     withCredentials([    
@@ -31,9 +28,6 @@ pipeline {
             }
         }
         stage('Deploy with Argo') {
-            when {
-                branch 'feat/sergio'
-            }  
             steps {
                 script {
                         dir('src'){
