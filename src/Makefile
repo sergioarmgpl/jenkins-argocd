@@ -1,7 +1,7 @@
 push_az:
 	docker login ${AZ_REGISTRY} -u ${AZ_USER} -p ${AZ_PASSWORD}
-	docker build . -t ${DOCKER_REPO}/${IMG_NAME}:${APP_VERSION}-${BUILD_NUMBER}
-	docker push ${DOCKER_REPO}/${IMG_NAME}:${APP_VERSION}-${BUILD_NUMBER}
+	docker build . -t ${AZ_REGISTRY}/${IMG_NAME}:${APP_VERSION}-${BUILD_NUMBER}
+	docker push ${AZ_REGISTRY}/${IMG_NAME}:${APP_VERSION}-${BUILD_NUMBER}
 push_base:
 	cat ${GCR_KEY} | docker login -u _json_key --password-stdin ${DOCKER_REGISTRY}
 	docker build . -t ${DOCKER_REPO}/${IMG_NAME}:${APP_VERSION}-${BUILD_NUMBER}
