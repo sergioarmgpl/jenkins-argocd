@@ -9,9 +9,13 @@ pipeline {
         ARGO_PROJECT='testargo'
         NAMESPACE='dev'
         AZ_REGISTRY='bdgapp.azurecr.io'
+        DOMAIN='app.demo.pruebasbdg.tk'
     }
     stages {
         stage('Build & Test Dev') {
+            when {
+                branch 'feat/sergio'
+            }  
             steps {
                 script {
                     withCredentials([    
@@ -27,6 +31,9 @@ pipeline {
             }
         }
         stage('Deploy with Argo') {
+            when {
+                branch 'feat/sergio'
+            }  
             steps {
                 script {
                         dir('src'){
